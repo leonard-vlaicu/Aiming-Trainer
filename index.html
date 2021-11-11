@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflex Aiming</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!-- Table Score -->
+    <div class="result">
+        <!-- Title -->
+        <h4 class="title">SCORE</h4>
+        <!-- Table -->
+        <div class="table">
+            <!-- Left Column -->
+            <div id="column1" class="tcolumn">
+                <div class="row" id="entry1">
+                    <p class="index">1.</p>
+                    <p id="time1" class="time"></p>
+                </div>
+
+                <div class="row" id="entry2">
+                    <p class="index">2. </p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry3">
+                    <p class="index">3. </p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry4">
+                    <p class="index">4. </p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry5">
+                    <p class="index">5.</p>
+                    <p class="time"></p>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div id="column2" class="tcolumn">
+                <div class="row" id="entry6">
+                    <p class="index">6.</p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry7">
+                    <p class="index">7.</p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry8">
+                    <p class="index">8.</p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry9">
+                    <p class="index">9.</p>
+                    <p class="time"></p>
+                </div>
+
+                <div class="row" id="entry10">
+                    <p class="index">10.</p>
+                    <p class="time"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="canvas">
+        <svg id="drawing" width="100" height="100">
+            <circle id="target" display="none" class="circle" cx="50" cy="50" r="40" fill="#A71D31" stroke="black" />
+        </svg>
+
+        <h2 id="click" class="title"><i>Click here to begin</i></h2>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
