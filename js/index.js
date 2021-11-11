@@ -6,6 +6,10 @@ window.onload =
         inputArr.forEach(() => "")
     }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function targetValid(id) {
     $(id).css('fill', 'green');
     isValid = true;
@@ -16,13 +20,9 @@ function targetInvalid(id) {
     isValid = false;
 }
 
-function target(time) {
-    let timeStart = Date.now();
-    let timeEnd = Date.now();
-
-    setTimeout(() => {
-        targetValid('#target');
-    }, time*1000);
+function target() {
+    let time = Math.floor(Math.random() * 10) + 1;
+    console.log(time);
 }
 
 $('#click').click(function (e) {
@@ -39,15 +39,14 @@ $('#click').click(function (e) {
     console.log("click");
     var timeStart;
     var timeEnd;
-    let time = Math.floor(Math.random() * 10) + 1;
-    setTimeout(() => {
-        targetValid('#target');
-        timeStart = Date.now();
-        setTimeout(() => {
-            targetInvalid('#target');
-            $('#click').css('display', '');
-        }, 1000);
-    }, time * 1000);
+
+    setTimeout(async function () {
+        for (let index = 0; index < 10; index++) {
+            const element = index;
+            target();
+            await sleep(3000);
+        }
+    }, 3000);
 
     $('#target').click(function (e) {
         e.preventDefault();
@@ -55,13 +54,9 @@ $('#click').click(function (e) {
         if (isValid) {
             timeEnd = Date.now();
             let reactionTime = timeEnd - timeStart;
-            $('#time1').text(reactionTime/1000+'s');
+            $('#time1').text(reactionTime / 1000 + 's');
         } else {
             $('#time1').text('MISS');
-            clearTimeout();
-            clearTimeout();
         }
     });
-
-    console.log(time);
 });
