@@ -20,40 +20,54 @@ function targetInvalid(id) {
     isValid = false;
 }
 
-$('#click').click(function (e) {
-    e.preventDefault();
-
+function clearRecords() {
     let elems = document.getElementsByClassName('time');
+
     for (let index = 0; index < elems.length; index++) {
         const elem = elems[index];
         elem.innerText = '';
     }
+}
 
+
+
+$('#click').click(function (e) {
+    e.preventDefault();
+    clearRecords();
+
+    let elems = document.getElementsByClassName('time');
+
+    targetInvalid('#target');
     $('#click').hide();
     $('#target').show();
-    var timeStart;
-    var timeEnd;
-    var index;
+
+    let timeStart, timeEnd, index, targetClick;
+
     setTimeout(async function () {
         for (index = 0; index < 10; index++) {
             let time = Math.floor(Math.random() * 10) + 1;
-            console.log(time);
+            console.log(index);
             targetInvalid('#target');
             await sleep(time*1000);
+
             timeStart = Date.now();
             targetValid('#target');
             await sleep(1000);
         }
+        $('#target').hide();
+        $('#click').show();
     }, 3000);
 
     $('#target').click(function (e) {
         e.preventDefault();
-
+        
         if (isValid) {
+            targetClick = true;
             timeEnd = Date.now();
             let reactionTime = timeEnd - timeStart;
             elems[index].innerText = reactionTime / 1000 + 's';
         } else {
+            targetClick = false;
             elems[index].innerText = 'MISS'
         }
     });
