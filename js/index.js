@@ -47,21 +47,24 @@ $('#click').click(function (e) {
         for (index = 0; index < 10; index++) {
             clickBlock = false;
             let time = Math.floor(Math.random() * 10) + 1;
-            console.log(index);
+
             targetInvalid('#target');
             await sleep(time*1000);
 
             timeStart = Date.now();
             targetValid('#target');
             await sleep(1000);
+
+            if(!clickBlock) {
+                elems[index].textContent = 'MISS';
+            }
         }
         $('#target').hide();
         $('#click').show();
     }, 3000);
 
     $('#target').click(function (e) {
-        e.preventDefault();
-        console.log(clickBlock);
+        e.preventDefault(); 
 
         if(!clickBlock) {
             clickBlock = true;
