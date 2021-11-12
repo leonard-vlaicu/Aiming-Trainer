@@ -25,7 +25,7 @@ function clearRecords() {
 
     for (let index = 0; index < elems.length; index++) {
         const elem = elems[index];
-        elem.innerText = '';
+        elem.textContent = '';
     }
 }
 
@@ -41,10 +41,11 @@ $('#click').click(function (e) {
     $('#click').hide();
     $('#target').show();
 
-    let timeStart, timeEnd, index, targetClick;
+    let timeStart, timeEnd, index, targetClick, clickBlock;
 
     setTimeout(async function () {
         for (index = 0; index < 10; index++) {
+            clickBlock = false;
             let time = Math.floor(Math.random() * 10) + 1;
             console.log(index);
             targetInvalid('#target');
@@ -60,15 +61,19 @@ $('#click').click(function (e) {
 
     $('#target').click(function (e) {
         e.preventDefault();
-        
-        if (isValid) {
-            targetClick = true;
-            timeEnd = Date.now();
-            let reactionTime = timeEnd - timeStart;
-            elems[index].innerText = reactionTime / 1000 + 's';
-        } else {
-            targetClick = false;
-            elems[index].innerText = 'MISS'
+        console.log(clickBlock);
+
+        if(!clickBlock) {
+            clickBlock = true;
+            if (isValid) {
+                targetClick = true;
+                timeEnd = Date.now();
+                let reactionTime = timeEnd - timeStart;
+                elems[index].textContent = reactionTime / 1000 + 's';
+            } else {
+                targetClick = false;
+                elems[index].textContent = 'MISS'
+            }
         }
     });
 });
