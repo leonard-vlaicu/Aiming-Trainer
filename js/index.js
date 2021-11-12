@@ -20,11 +20,6 @@ function targetInvalid(id) {
     isValid = false;
 }
 
-function target() {
-    let time = Math.floor(Math.random() * 10) + 1;
-    console.log(time);
-}
-
 $('#click').click(function (e) {
     e.preventDefault();
 
@@ -36,15 +31,18 @@ $('#click').click(function (e) {
 
     $('#click').hide();
     $('#target').show();
-    console.log("click");
     var timeStart;
     var timeEnd;
-
+    var index;
     setTimeout(async function () {
-        for (let index = 0; index < 10; index++) {
-            const element = index;
-            target();
-            await sleep(3000);
+        for (index = 0; index < 10; index++) {
+            let time = Math.floor(Math.random() * 10) + 1;
+            console.log(time);
+            targetInvalid('#target');
+            await sleep(time*1000);
+            timeStart = Date.now();
+            targetValid('#target');
+            await sleep(1000);
         }
     }, 3000);
 
@@ -54,9 +52,9 @@ $('#click').click(function (e) {
         if (isValid) {
             timeEnd = Date.now();
             let reactionTime = timeEnd - timeStart;
-            $('#time1').text(reactionTime / 1000 + 's');
+            elems[index].innerText = reactionTime / 1000 + 's';
         } else {
-            $('#time1').text('MISS');
+            elems[index].innerText = 'MISS'
         }
     });
 });
