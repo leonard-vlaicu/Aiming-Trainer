@@ -49,13 +49,13 @@ $('#click').click(function (e) {
             let time = Math.floor(Math.random() * 10) + 1;
 
             targetInvalid('#target');
-            await sleep(time*1000);
+            await sleep(time * 1000);
 
             timeStart = Date.now();
             targetValid('#target');
             await sleep(1000);
 
-            if(!clickBlock) {
+            if (!clickBlock) {
                 elems[index].textContent = 'MISS';
             }
         }
@@ -64,9 +64,9 @@ $('#click').click(function (e) {
     }, 3000);
 
     $('#target').click(function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        if(!clickBlock) {
+        if (!clickBlock) {
             clickBlock = true;
             if (isValid) {
                 targetClick = true;
